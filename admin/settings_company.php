@@ -3,10 +3,11 @@ require_once "includes/inc_all_admin.php";
 
 
 $sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
-
 $row = mysqli_fetch_assoc($sql);
+
 $company_id = intval($row['company_id']);
 $company_name = nullable_htmlentities($row['company_name']);
+$company_abbr = nullable_htmlentities($row['company_abbr']);
 $company_country = nullable_htmlentities($row['company_country']);
 $company_address = nullable_htmlentities($row['company_address']);
 $company_city = nullable_htmlentities($row['company_city']);
@@ -54,6 +55,16 @@ $company_initials = nullable_htmlentities(initials($company_name));
                                         <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="name" placeholder="Company Name" value="<?php echo $company_name; ?>" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group"> 
+                                <label>Abreviatura <strong class="text-danger">*</strong></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="company_abbr" placeholder="Abreviatura" value="<?php echo $company_abbr; ?>" required>
                                 </div>
                             </div>
 

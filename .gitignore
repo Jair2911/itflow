@@ -1,6 +1,12 @@
 node_modules
 config.php
 
+
+# ./plugins/vendor/
+
+# /plugins/vendor/bin/*
+plugins/vendor/bin/carbon
+
 uploads/favicon.ico
 uploads/clients/*
 !uploads/clients/index.php

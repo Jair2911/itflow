@@ -3,6 +3,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM companies, settings WHERE settings.c
 $row = mysqli_fetch_assoc($sql);
 
 $session_company_name = $row['company_name'];
+$company_abbr = $row['company_abbr'];
 $session_company_country = $row['company_country'];
 $session_company_locale = $row['company_locale'];
 $session_company_currency = $row['company_currency'];

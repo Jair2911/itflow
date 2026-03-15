@@ -662,18 +662,18 @@ if (isset($_GET['export_quote_pdf'])) {
     $sql = mysqli_query($mysqli, "SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
     $row = mysqli_fetch_assoc($sql);
 
-    $company_id = intval($row['company_id']);
-    $company_name = nullable_htmlentities($row['company_name']);
-    $company_country = nullable_htmlentities($row['company_country']);
-    $company_address = nullable_htmlentities($row['company_address']);
-    $company_city = nullable_htmlentities($row['company_city']);
-    $company_state = nullable_htmlentities($row['company_state']);
-    $company_zip = nullable_htmlentities($row['company_zip']);
-    $company_phone_country_code = nullable_htmlentities($row['company_phone_country_code']);
-    $company_phone = nullable_htmlentities(formatPhoneNumber($row['company_phone'], $company_phone_country_code));
-    $company_email = nullable_htmlentities($row['company_email']);
-    $company_website = nullable_htmlentities($row['company_website']);
-    $company_logo = nullable_htmlentities($row['company_logo']);
+    $company_id = intval($row['company_id'])  ?? '';
+    $company_name = nullable_htmlentities($row['company_name']) ?? '';
+    $company_country = nullable_htmlentities($row['company_country']) ?? '';
+    $company_address = nullable_htmlentities($row['company_address']) ?? '';
+    $company_city = nullable_htmlentities($row['company_city']) ?? '';
+    $company_state = nullable_htmlentities($row['company_state']) ?? '';
+    $company_zip = nullable_htmlentities($row['company_zip']) ?? '';
+    $company_phone_country_code = nullable_htmlentities($row['company_phone_country_code'])  ?? '';
+    $company_phone = nullable_htmlentities(formatPhoneNumber($row['company_phone'], $company_phone_country_code))  ?? '';
+    $company_email = nullable_htmlentities($row['company_email'])  ?? '';
+    $company_website = nullable_htmlentities($row['company_website'])  ?? '';
+    $company_logo = nullable_htmlentities($row['company_logo'])  ?? '';
 
     //Set Badge color based off of quote status
     if ($quote_status == "Sent") {
@@ -764,12 +764,12 @@ if (isset($_GET['export_quote_pdf'])) {
 
     $sql_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE item_quote_id = $quote_id ORDER BY item_order ASC");
     while ($item = mysqli_fetch_assoc($sql_items)) {
-        $name = $item['item_name'];
-        $desc = $item['item_description'];
-        $qty = $item['item_quantity'];
-        $price = $item['item_price'];
-        $tax = $item['item_tax'];
-        $total = $item['item_total'];
+        $name = $item['item_name'] ?? '';
+        $desc = $item['item_description'] ?? '';
+        $qty = $item['item_quantity'] ?? '';
+        $price = $item['item_price'] ?? '';
+        $tax = $item['item_tax'] ?? '';
+        $total = $item['item_total'] ?? '';
 
         $sub_total += $price * $qty;
         $total_tax += $tax;
@@ -809,7 +809,7 @@ if (isset($_GET['export_quote_pdf'])) {
     </table><br><br>';
 
     // Footer
-    $html .= '<div style="text-align:center; font-size:9pt; color:gray;">' . nl2br($config_quote_footer) . '</div>';
+    $html .= '<div style="text-align:center; font-size:9pt; color:gray;">' . nl2br('') . '</div>';
 
     $pdf->writeHTML($html, true, false, true, false, '');
 

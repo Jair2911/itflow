@@ -1,9 +1,23 @@
+<?php 
+    $sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
+    $row = mysqli_fetch_assoc($sql);
+
+    $company_logo = nullable_htmlentities($row['company_logo']);
+
+?>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-<?php echo nullable_htmlentities($config_theme); ?> d-print-none">
 
     <a class="brand-link" href="/agent/dashboard.php">
-        <div class="brand-image"></div>
-        <span class="brand-text h4"><?php echo nullable_htmlentities($session_company_name); ?></span>
+        <div class="brand-image">
+        <div class="login-logo">
+                <img width="43" class="img-fluid" src="<?php echo "../../uploads/favicon.ico"; ?>">
+        </div>
+
+
+        </div>
+        <span class="brand-text h4"><?php echo nullable_htmlentities($company_abbr); ?> </span>
     </a>
 
     <!-- Sidebar -->
